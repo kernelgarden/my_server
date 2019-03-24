@@ -6,6 +6,9 @@ defmodule FreddieTest.Application do
   def start(_type, args) do
     Supervisor.start_link(
       [
+        FreddieTest.Player.Supervisor,
+        FreddieTest.PlayerRegistry,
+        FreddieTest.LocalSerialGenerator,
         FreddieTest.Repo,
         {Freddie, [activate_eprof: true, activate_fprof: true]}
       ],

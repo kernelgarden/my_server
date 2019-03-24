@@ -8,7 +8,7 @@ config :freddie_test, FreddieTest.Repo,
   password: "tabstorage",
   hostname: "localhost"
 
-  config :freddie_test, ecto_repos: [FreddieTest.Repo]
+config :freddie_test, ecto_repos: [FreddieTest.Repo]
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
@@ -40,5 +40,5 @@ config :freddie_test, FreddieTest.Repo,
 config :freddie,
   app_mod: :freddie_test,
   scheme_root_mod: FreddieTest.Scheme,
-  packet_type_mod: FreddieTest.Packets.Types,
+  packet_type_mod: FreddieTest.Protocol.Types,
   packet_handler_mod: FreddieTest.Handler

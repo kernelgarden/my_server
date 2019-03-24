@@ -1,4 +1,4 @@
-defmodule FreddieTest.Packets do
+defmodule FreddieTest.Protocol do
   use EnumType
 
   defenum Types do
