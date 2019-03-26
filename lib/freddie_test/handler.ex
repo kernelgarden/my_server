@@ -3,7 +3,7 @@ defmodule FreddieTest.Handler do
 
   require Logger
 
-  alias FreddieTest.{Scheme, Hanlder, Player}
+  alias FreddieTest.{Scheme, Handler, Player}
 
   defhandler FreddieTest.Scheme.CS_Echo do
     echo = Scheme.SC_Echo.new(msg: msg.msg)
@@ -24,25 +24,20 @@ defmodule FreddieTest.Handler do
   end
 
   defhandler FreddieTest.Scheme.CS_Login do
-    {context, msg}
+    {meta, context, msg}
     |> Handler.Login.handle()
   end
 
   connect do
     Logger.info("Client #{inspect(context)} is connected!")
-
-    new_serial_id = FreddieTest.LocalSerialGenerator.new()
-
-    Player.Supervisor.start_child(new_serial_id)
-
-    Freddie.Context.put(context, :player_serial, new_serial_id)
   end
 
   disconnect do
     Logger.info("Client #{inspect(context)} is disconnected!")
 
-    context
-    |> Freddie.Context.get(:player_serial)
-    |> Player.kill()
+    case Freddie.Context.get(context, :player_serial) do
+      {:ok, player_serial} -> Player.kill(player_serial)
+      _ -> :noop
+    end
   end
 end

@@ -4,6 +4,7 @@ defmodule FreddieTest.Repo.Migrations.CreateUser do
   def change do
     create table(:user) do
       add :player_name, :string
+      add :hashed_password, :string
       add :current_pos_x, :float
       add :current_pos_y, :float
       add :current_pos_z, :float
