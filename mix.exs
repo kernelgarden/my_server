@@ -25,7 +25,8 @@ defmodule FreddieTest.MixProject do
       {:freddie, path: "../freddie"},
       {:ecto_sql, "~> 3.0.5"},
       {:mariaex, "~> 0.9.1"},
-      {:bcrypt_elixir, "~> 2.0"}
+      {:bcrypt_elixir, "~> 2.0"},
+      {:fsm, "~> 0.3.1"}
     ]
   end
 end

@@ -1,10 +1,16 @@
-defmodule FreddieTest.PlayerRegistry do
+defmodule FreddieTest.MonsterRegistry do
+  @max_monster_group 1_000
+
   @spec start_link() :: {:error, any()} | {:ok, pid()}
   def start_link() do
     Registry.start_link(keys: :unique, name: __MODULE__, partitions: System.schedulers_online())
   end
 
-  @spec via_tuple(integer()) :: {:via, Registry, {FreddieTest.PlayerRegistry, integer()}}
+  def max_monster_group() do
+    @max_monster_group
+  end
+
+  @spec via_tuple(integer()) :: {:via, Registry, {FreddieTest.MonsterRegistry, integer()}}
   def via_tuple(key) do
     {:via, Registry, {__MODULE__, key}}
   end
@@ -24,4 +30,5 @@ defmodule FreddieTest.PlayerRegistry do
       start: {__MODULE__, :start_link, []}
     )
   end
+
 end
